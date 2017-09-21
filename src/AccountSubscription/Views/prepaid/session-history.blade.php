@@ -1,0 +1,1 @@
+@extends("AccountSubscription::prepaid.layout")
