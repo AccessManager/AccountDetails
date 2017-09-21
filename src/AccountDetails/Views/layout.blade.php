@@ -1,4 +1,7 @@
 @extends("Base::canvas")
+@section("header")
+    {{$account->fname}} {{$account->lname}}
+@endsection
 @section("main-content")
     <div class="row">
         <div class="col-xs-3">

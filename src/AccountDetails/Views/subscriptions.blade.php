@@ -19,11 +19,10 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             @foreach($subscriptions as $subscription)
-                @if( $subscription->isAdvancepaid() )
-                    @include('AM3AccountDetail::partials.advancepaid-subscription', ['sub'=>$subscription])
-                @endif
                 @if( $subscription->isPrepaid() )
-                    @include('AM3AccountDetail::partials.prepaid-subscription', ['sub'=>$subscription])
+                    @include('AccountDetails::partials.prepaid-subscription', ['sub'=>$subscription])
+                @elseif($subscription->isFree())
+                    @include('AccountDetails::partials.free-subscription', ['sub'=>$subscription])
                 @endif
             @endforeach
         </div>

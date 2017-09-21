@@ -20,22 +20,18 @@
                         {{$account->username}}
                             </span>
                 </li>
-                <li class="list-group-item text-primary">
-                    Account Status
-                    <span class="pull-right badge bg-green-gradient">
-                        active
-                            </span>
-                </li>
                 <li class="list-group-item">
                     <span class="text-primary">Account Created On</span>
                     <span class="pull-right text-muted">
-                                {{$account->created_at->format('d M y')}}
+                                {{$account->created_at->format('d M Y')}}
                             </span>
                 </li>
-                {{--<li class="list-group-item">--}}
-                    {{----}}
-                {{--</li>--}}
-
+                <li class="list-group-item text-primary">
+                    Total Subscriptions
+                    <span class="pull-right text-muted">
+                        {{$account->subscriptions()->count()}}
+                            </span>
+                </li>
             </ul>
         </div>
     </div>
