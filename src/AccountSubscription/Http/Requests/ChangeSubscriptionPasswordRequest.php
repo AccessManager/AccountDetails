@@ -1,11 +1,11 @@
 <?php
 
-namespace AccessManager\AccountDetails\Http\Requests;
+namespace AccessManager\AccountDetails\AccountSubscription\Requests;
 
 
 use AccessManager\Base\Http\Requests\BaseFormRequest;
 
-class AddSubscriptionRequest extends BaseFormRequest
+class ChangeSubscriptionPasswordRequest extends BaseFormRequest
 {
     public function authorize()
     {
@@ -15,7 +15,7 @@ class AddSubscriptionRequest extends BaseFormRequest
     public function rules()
     {
         return [
-
+            'password'  =>  ['required', 'confirmed'],
         ];
     }
 }
