@@ -10,7 +10,7 @@ use AccessManager\AccountDetails\AccountSubscription\Requests\FreeSubscriptionPl
 use AccessManager\AccountDetails\Libraries\FreeSubscriptionPlanAssignmentHandler;
 use AccessManager\Services\Plans\Models\ServicePlan;
 
-class FreeSubscriptionController extends AccountSubscriptionsController
+class FreeSubscriptionController //extends AccountSubscriptionsController
 {
     public function getServices($accountUsername, $subscriptionUsername )
     {

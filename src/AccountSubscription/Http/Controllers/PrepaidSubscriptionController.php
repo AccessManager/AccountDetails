@@ -6,7 +6,7 @@ namespace AccessManager\AccountDetails\AccountSubscription\Http\Controllers;
 use AccessManager\AccountDetails\AccountSubscription\Models\PrepaidSubscription;
 use AccessManager\AccountDetails\AccountSubscription\Requests\ChangeSubscriptionPasswordRequest;
 
-class PrepaidSubscriptionController extends AccountSubscriptionsController
+class PrepaidSubscriptionController //extends AccountSubscriptionsController
 {
 
     public function getServices($accountUsername, $subscriptionUsername )
