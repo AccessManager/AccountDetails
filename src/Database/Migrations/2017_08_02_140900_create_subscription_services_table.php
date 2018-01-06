@@ -15,11 +15,11 @@ class CreateSubscriptionServicesTable extends Migration
     {
         Schema::create('account_subscription_services', function(Blueprint $table){
             $table->engine = 'InnoDB';
-
+            
             $table->increments('id');
             $table->unsignedInteger('account_subscription_id');
-            $table->unsignedBigInteger('time_balance')->nullable();
-            $table->unsignedBigInteger('data_balance')->nullable();
+            $table->bigInteger('time_balance')->nullable();
+            $table->bigInteger('data_balance')->nullable();
             $table->timestamp('last_reset_on')->nullable();
             $table->boolean('exhausted')->default(0);
 
