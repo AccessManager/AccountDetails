@@ -100,7 +100,7 @@ abstract class ServicePlanAssignmentAbstractService
         }
 
         $quota = $this->subscription->services()->updateOrCreate([
-            'exhausted' =>  0,
+            'account_subscription_id' =>  $this->subscription->id,
         ]);
 
         if( is_integer($this->services->limits->time_limit) )
