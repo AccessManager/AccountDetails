@@ -15,7 +15,7 @@ class CreateSubscriptionServicesTable extends Migration
     {
         Schema::create('account_subscription_services', function(Blueprint $table){
             $table->engine = 'InnoDB';
-            
+
             $table->increments('id');
             $table->unsignedInteger('account_subscription_id');
             $table->bigInteger('time_balance')->nullable();
