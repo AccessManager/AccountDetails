@@ -103,6 +103,8 @@ abstract class ServicePlanAssignmentAbstractService
             'account_subscription_id' =>  $this->subscription->id,
         ]);
 
+        $quota->exhausted = 0;
+
         if( is_integer($this->services->limits->time_limit) )
         {
             $quota->time_balance = $this->services->limits->time_limit * Time::getUnitValue($this->services->limits->time_unit);
