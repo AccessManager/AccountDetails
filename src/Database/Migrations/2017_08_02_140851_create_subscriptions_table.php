@@ -35,7 +35,8 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('account_subscription_primary_policies', function(Blueprint $table){
             $table->engine = 'InnoDB';
 
-            $table->increments('account_subscription_id');
+            $table->increments('id');
+            $table->unsignedInteger('account_subscription_id');
             $table->unsignedInteger('min_up');
             $table->enum('min_up_unit', \AccessManager\Constants\Bandwidth::BANDWIDTH_UNITS );
             $table->unsignedInteger('min_down');
