@@ -17,7 +17,11 @@ class PrepaidSubscriptionController //extends AccountSubscriptionsController
 
     public function getSessionHistory( $accountUsername, $subscriptionUsername )
     {
-        return view('AccountSubscription::prepaid.session-history');
+        $sessions = \DB::table('radacct')
+            ->where('username', $subscriptionUsername)
+            ->orderby('acctstarttime', 'DESC')
+            ->paginate(10);
+        return view('AccountSubscription::prepaid.session-history', compact('sessions'));
     }
 
     public function getRechargeHistory($accountUsername, $subscriptionUsername)

@@ -47,3 +47,6 @@
     @endforelse
     </tbody>
 </table>
+<div class="pull-right">
+    {{$sessions->links()}}
+</div>
