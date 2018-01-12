@@ -25,10 +25,10 @@
                 {{\AccessManager\Helpers\Format::secondsToReadable($session->acctsessiontime)}}
             </td>
             <td>
-                {{\AccessManager\Helpers\Format::bytesToReadable($session->acctinputoctets)}}
+                {{\AccessManager\Helpers\Format::bytesToReadable($session->acctoutputoctets)}}
             </td>
             <td>
-                {{\AccessManager\Helpers\Format::bytesToReadable($session->acctoutputoctets)}}
+                {{\AccessManager\Helpers\Format::bytesToReadable($session->acctinputoctets)}}
             </td>
             <td>
                 {{\AccessManager\Helpers\Format::bytesToReadable($session->acctinputoctets + $session->acctoutputoctets)}}
