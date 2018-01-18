@@ -31,7 +31,7 @@ class FreeSubscriptionController //extends AccountSubscriptionsController
     public function postChangePassword( $accountUsername, $subscriptionUsername, ChangeSubscriptionPasswordRequest $request )
     {
         try {
-            $subscription = AccountSubscription::where('username', $subscriptionUsername)->firstOrFail();
+            $subscription = FreeSubscription::where('username', $subscriptionUsername)->firstOrFail();
             $subscription->password = $request->password;
             $subscription->saveOrFail();
             return back();
