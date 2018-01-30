@@ -21,7 +21,7 @@ class FreeSubscriptionPlanAssignRequest extends BaseFormRequest
     public function rules()
     {
         return [
-            'expires_on'    =>  ['date'],
+            'expires_on'    =>  ['nullable','date'],
         ];
     }
 }
