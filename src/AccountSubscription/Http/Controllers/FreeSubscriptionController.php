@@ -55,7 +55,7 @@ class FreeSubscriptionController //extends AccountSubscriptionsController
             $plan = ServicePlan::findOrFail($request->plan_id);
             $handler = new FreeSubscriptionPlanAssignmentHandler($subscription, $plan, $request->expires_on);
             $handler->process();
-
+            return redirect()->route('account.subscriptions.free.services',[$accountUsername, $subscriptionUsername]);
         }
         catch (\Exception $e)
         {
