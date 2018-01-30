@@ -20,7 +20,12 @@ class FreeSubscriptionController //extends AccountSubscriptionsController
 
     public function getSessionHistory( $accountUsername, $subscriptionUsername )
     {
-        return view('AccountSubscription::free.session-history');
+        $sessions = \DB::table('radacct')
+            ->where('username', $subscriptionUsername)
+            ->orderby('acctstarttime', 'DESC')
+            ->paginate(10);
+
+        return view('AccountSubscription::free.session-history', compact('sessions'));
     }
 
     public function getChangePassword( $accountUsername, $subscriptionUsername )
