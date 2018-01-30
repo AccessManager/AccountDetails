@@ -68,11 +68,6 @@ Route::group([
             'uses'  =>  'FreeSubscriptionController@getSessionHistory',
         ]);
 
-        Route::get('/recharge-history', [
-            'as'    =>  'account.subscriptions.free.recharge-history',
-            'uses'  =>  'FreeSubscriptionController@getRechargeHistory',
-        ]);
-
         Route::get('/change-password', [
             'as'    =>  'account.subscriptions.free.change-password',
             'uses'  =>  'FreeSubscriptionController@getChangePassword',
