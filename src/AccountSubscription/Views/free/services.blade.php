@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-2">
                 <p class="text-muted">
-                    {{\AccessManager\Constants\Subscription::PREPAID_STRING}}
+                    {{\AccessManager\Constants\Subscription::FREE_STRING}}
                 </p>
             </div>
             <div class="col-md-3">
