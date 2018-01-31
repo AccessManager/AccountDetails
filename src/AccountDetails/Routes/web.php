@@ -39,7 +39,7 @@ Route::group([
 
     Route::post('/change-password', [
         'as'    =>  'account.change-password.post',
-        'uses'  =>  'AccountDetailsController@getChangePassword',
+        'uses'  =>  'AccountDetailsController@postChangePassword',
     ]);
 
 });
