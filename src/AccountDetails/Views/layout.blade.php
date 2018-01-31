@@ -44,7 +44,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="">
+                                <a href="{{route('account.change-password', request()->segment(2) )}}">
                                     Change Password
                                 </a>
                             </li>
