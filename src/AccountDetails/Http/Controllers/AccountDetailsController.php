@@ -4,6 +4,7 @@ namespace AccessManager\AccountDetails\AccountDetails\Http\Controllers;
 
 
 use AccessManager\AccountDetails\AccountDetails\Http\Requests\AddSubscriptionRequest;
+use AccessManager\AccountDetails\AccountDetails\Http\Requests\ChangeAccountPasswordRequest;
 use AccessManager\AccountDetails\AccountSubscription\Models\AccountSubscription;
 use AccessManager\Accounts\Models\Account;
 use AccessManager\Base\Http\Controller\AdminBaseController;
@@ -48,8 +49,17 @@ class AccountDetailsController extends AdminBaseController
         return view('AccountDetails::change-password');
     }
 
-    public function postChangePassword()
+    public function postChangePassword( $accountUsername, ChangeAccountPasswordRequest $request )
     {
-
+        try {
+            $account = Account::where('username', $accountUsername)->firstOrFail();
+            $account->password = bcrypt($request->password);
+            $account->saveOrFail();
+            return back();
+        }
+        catch (\Exception $e)
+        {
+            dd($e->getMessage());
+        }
     }
 }
