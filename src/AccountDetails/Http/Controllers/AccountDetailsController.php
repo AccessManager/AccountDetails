@@ -45,7 +45,7 @@ class AccountDetailsController extends AdminBaseController
 
     public function getChangePassword()
     {
-
+        return view('AccountDetails::change-password');
     }
 
     public function postChangePassword()
