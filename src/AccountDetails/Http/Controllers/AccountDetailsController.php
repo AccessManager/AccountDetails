@@ -18,9 +18,11 @@ class AccountDetailsController extends AdminBaseController
         return view("AccountDetails::demographics");
     }
 
-    public function getSubscriptions( AccountSubscription $accountSubscription )
+    public function getSubscriptions( $username )
     {
-        $subscriptions = $accountSubscription->all();
+        $account = Account::where('username', $username)->firstOrFail();
+
+        $subscriptions = $account->subscriptions->all();
         return view('AccountDetails::subscriptions', compact('subscriptions'));
     }
 
