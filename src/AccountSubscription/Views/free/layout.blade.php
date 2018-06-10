@@ -34,6 +34,11 @@
                             Change Password
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('account.subscriptions.free.network-config', [request()->segment(2), request()->segment(4)])}}">
+                            Network Config.
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="pull-right">
