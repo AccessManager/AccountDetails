@@ -3,6 +3,8 @@
 namespace AccessManager\AccountDetails\AccountSubscription\Models;
 
 
+use AccessManager\AccountDetails\AccountSubscription\Interfaces\AccountSubscriptionInterface;
+use AccessManager\AccountDetails\AccountSubscription\Interfaces\SubscriptionInterface;
 use AccessManager\Accounts\Models\Account;
 use AccessManager\Base\Models\AdminBaseModel;
 use AccessManager\Constants\Subscription;
@@ -12,7 +14,7 @@ use Carbon\Carbon;
  * Class AccountSubscription
  * @package AccessManager\AccountDetails
  */
-class AccountSubscription extends AdminBaseModel
+class AccountSubscription extends AdminBaseModel implements SubscriptionInterface
 {
     /**
      * here we define what parameters are allowed to be inserted into database.
@@ -83,6 +85,16 @@ class AccountSubscription extends AdminBaseModel
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * Defines relationship with AccountSubscriptionRoute model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function route()
+    {
+        return $this->hasOne(AccountSubscriptionRoute::class, 'account_subscription_id');
     }
 
     /**
