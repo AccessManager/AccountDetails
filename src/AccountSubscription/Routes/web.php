@@ -43,6 +43,16 @@ Route::group([
             'as'    =>  'account.subscriptions.prepaid.change-password.post',
             'uses'  =>  'PrepaidSubscriptionController@postChangePassword',
         ]);
+
+        Route::get('/network-config', [
+            'as'    =>  'account.subscriptions.prepaid.network-config',
+            'uses'  =>  'PrepaidSubscriptionController@getNetworkConfig',
+        ]);
+
+        Route::post('/assign-ip', [
+            'as'    =>  'accounts.subscriptions.prepaid.assign-ip.post',
+            'uses'  =>  'PrepaidSubscriptionController@postAssignFramedIp',
+        ]);
     });
 
     Route::group([
@@ -88,6 +98,40 @@ Route::group([
             'uses'  =>  'FreeSubscriptionController@postAssignServices',
         ]);
 
+        Route::get('flip-status', [
+            'as'    =>  'account.subscriptions.free.flip-status',
+            'uses'  =>  'FreeSubscriptionController@getFlipStatus',
+        ]);
+
+        Route::get('/network-config', [
+            'as'    =>  'account.subscriptions.free.network-config',
+            'uses'  =>  'FreeSubscriptionController@getNetworkConfig',
+        ]);
+
+        Route::get('/network-config/assign-ip', [
+            'as'    =>  'account.subscriptions.free.assign-ip',
+            'uses'  =>  'FreeSubscriptionController@getAssignIp'
+        ]);
+
+        Route::post('/network-config/assign-ip', [
+            'as'    =>  'account.subscriptions.free.assign-ip.post',
+            'uses'  =>  'FreeSubscriptionController@postAssignIp',
+        ]);
+
+        Route::post('/network-config/remove-ip', [
+            'as'    =>  'account.subscriptions.free.remove-ip.post',
+            'uses'  =>  'FreeSubscriptionController@postRemoveIp'
+        ]);
+
+        Route::get('/network-config/assign-route', [
+            'as'    =>  'account.subscriptions.free.assign-route',
+            'uses'  =>  'FreeSubscriptionController@getAssignRoute',
+        ]);
+
+        Route::post('/network-config/assign-route', [
+            'as'    =>  'account.subscriptions.free.assign-route.post',
+            'uses'  =>  'FreeSubscriptionController@postAssignRoute',
+        ]);
     });
 
 });
