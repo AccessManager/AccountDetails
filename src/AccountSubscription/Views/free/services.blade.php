@@ -96,20 +96,38 @@
                 </p>
             </div>
         </div>
-
     @endif
     <div class="row">
         <div class="col-xs-3">
-            <div class="btn-group btn-group-sm pull-left">
-                <a
-                    href="{{route('account.subscriptions.free.assign-services', [$subscription->account->username, $subscription->username])}}"
-                    class="btn btn-success bg-green-gradient">
-                    @if( $subscription->name == null )
+            <div class="btn-group btn-group-xs pull-left">
+
+                @if( $subscription->name == null )
+                    <a
+                            href="{{route('account.subscriptions.free.assign-services', [$subscription->account->username, $subscription->username])}}"
+                            class="btn btn-success bg-green-gradient">
                         Assign Service Plan
+                    </a>
                         @else
+                    <a
+                            href="{{route('account.subscriptions.free.assign-services', [$subscription->account->username, $subscription->username])}}"
+                            class="btn btn-success bg-green-gradient">
                         Change Service Plan
-                        @endif
-                </a>
+                    </a>
+                @endif
+                @if($subscription->status == \AccessManager\Constants\Subscription::STATUS_ACTIVE)
+                    <a
+                            href="{{route('account.subscriptions.free.flip-status', [$subscription->account->username, $subscription->username])}}"
+                            class="btn btn-danger bg-red-gradient">
+                        Suspend
+                    </a>
+                    @else
+                    <a
+                            href="{{route('account.subscriptions.free.flip-status', [$subscription->account->username, $subscription->username])}}"
+                            class="btn btn-success bg-green-gradient">
+                        Resume
+                    </a>
+                    @endif
+
             </div>
         </div>
     </div>
