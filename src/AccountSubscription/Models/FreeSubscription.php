@@ -4,6 +4,7 @@ namespace AccessManager\AccountDetails\AccountSubscription\Models;
 
 
 use AccessManager\AccountDetails\AccountSubscription\Interfaces\AccountSubscriptionInterface;
+use AccessManager\Constants\Subscription;
 
 class FreeSubscription extends AccountSubscription implements AccountSubscriptionInterface
 {
@@ -15,5 +16,13 @@ class FreeSubscription extends AccountSubscription implements AccountSubscriptio
     public function settings()
     {
         throw new \Exception("No separate settings for Free Subscriptions.");
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        static::addGlobalScope(function($query){
+            return $query->where('type', Subscription::FREE);
+        });
     }
 }
