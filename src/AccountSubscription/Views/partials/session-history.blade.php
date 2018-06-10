@@ -16,10 +16,12 @@
     @forelse($sessions as $session)
         <tr>
             <td>
-                {{(new \Carbon\Carbon($session->acctstarttime))->format('d M\'y H:i')}}
+                {{(\Carbon\Carbon::createFromTimestamp($session->acctstarttime))->format('d M\'y H:i')}}
             </td>
             <td>
-                {{(new \Carbon\Carbon($session->acctstoptime))->format('d M\'y H:i')}}
+                @if($session->acctstoptime != null )
+                    {{(\Carbon\Carbon::createFromTimestamp($session->acctstoptime))->format('d M\'y H:i')}}
+                @endif
             </td>
             <td>
                 {{\AccessManager\Helpers\Format::secondsToReadable($session->acctsessiontime)}}
