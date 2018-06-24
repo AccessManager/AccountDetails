@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-3">
                 <p class="text-muted">
-                    {{$sub->plan_name}}
+                    {{$sub->name}}
                 </p>
             </div>
             <div class="col-md-2">
