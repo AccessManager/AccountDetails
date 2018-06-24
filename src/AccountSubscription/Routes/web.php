@@ -132,6 +132,11 @@ Route::group([
             'as'    =>  'account.subscriptions.free.assign-route.post',
             'uses'  =>  'FreeSubscriptionController@postAssignRoute',
         ]);
+
+        Route::post('/network-config/remove-route', [
+            'as'    =>  'account.subscriptions.free.remove-route.post',
+            'uses'  =>  'FreeSubscriptionController@postRemoveRoute',
+        ]);
     });
 
 });

@@ -13,4 +13,8 @@ class AccountSubscriptionRoute extends AdminBaseModel
     protected $dates = ['assigned_on'];
     public $timestamps = false;
 
+    public function subscription()
+    {
+        return $this->belongsTo(AccountSubscription::class, 'account_subscription_id');
+    }
 }

@@ -8,6 +8,7 @@ use AccessManager\AccountDetails\AccountSubscription\Interfaces\SubscriptionInte
 use AccessManager\Accounts\Models\Account;
 use AccessManager\Base\Models\AdminBaseModel;
 use AccessManager\Constants\Subscription;
+use AccessManager\Routers\Models\NetworkSubnetIp;
 use Carbon\Carbon;
 
 /**
@@ -87,12 +88,17 @@ class AccountSubscription extends AdminBaseModel implements SubscriptionInterfac
         return $this->belongsTo(Account::class);
     }
 
+    public function framedIp()
+    {
+        return $this->hasOne(NetworkSubnetIp::class, 'user_id');
+    }
+
     /**
      * Defines relationship with AccountSubscriptionRoute model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function route()
+    public function framedRoute()
     {
         return $this->hasOne(AccountSubscriptionRoute::class, 'account_subscription_id');
     }

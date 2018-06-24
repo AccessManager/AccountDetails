@@ -4,8 +4,10 @@ namespace AccessManager\AccountDetails\AccountSubscription\Http\Controllers;
 
 
 
+use AccessManager\AccountDetails\AccountSubscription\Models\AccountSubscription;
 use AccessManager\AccountDetails\AccountSubscription\Models\AccountSubscriptionRoute;
 use AccessManager\AccountDetails\AccountSubscription\Models\FreeSubscription;
+use AccessManager\AccountDetails\AccountSubscription\Requests\AssignRouteRequest;
 use AccessManager\AccountDetails\AccountSubscription\Requests\ChangeSubscriptionPasswordRequest;
 use AccessManager\AccountDetails\AccountSubscription\Requests\FreeSubscriptionPlanAssignRequest;
 use AccessManager\AccountDetails\Libraries\FreeSubscriptionPlanAssignmentHandler;
@@ -13,6 +15,7 @@ use AccessManager\Routers\Models\NetworkSubnet;
 use AccessManager\Routers\Models\NetworkSubnetIp;
 use AccessManager\Services\Plans\Models\ServicePlan;
 use Carbon\Carbon;
+use IPTools\Network;
 
 class FreeSubscriptionController
 {
@@ -97,12 +100,37 @@ class FreeSubscriptionController
 
     public function getAssignRoute()
     {
-
+        return view('AccountSubscription::free.assign-route');
     }
 
-    public function postAssignRoute()
+    public function postAssignRoute( AssignRouteRequest $request, $accountUsername, $subscriptionUsername )
     {
+        try{
+            Network::parse($request->cidr);
+            $subscription = FreeSubscription::whereUsername($subscriptionUsername)->FirstOrFail();
+            $route = AccountSubscriptionRoute::firstOrNew(['account_subscription_id'=> $subscription->id]);
+            $route->cidr = $request->cidr;
+            $route->assigned_on = new Carbon;
+            $route->save();
+            return redirect()->route('account.subscriptions.free.network-config', [$accountUsername, $subscriptionUsername]);
+        }
+        catch (\Exception $e)
+        {
+            dd($e->getMessage());
+        }
+    }
 
+    public function postRemoveRoute($accountUsername, $subscriptionUsername)
+    {
+        try{
+            $subscription = AccountSubscription::whereUsername($subscriptionUsername)->firstOrFail();
+            AccountSubscriptionRoute::where(['account_subscription_id'=>$subscription->id])->delete();
+            return back();
+        }
+        catch (\Exception $e)
+        {
+            dd($e->getMessage());
+        }
     }
 
     public function getAssignServices( $accountUsername, $subscriptionUsername )

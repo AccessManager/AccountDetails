@@ -54,9 +54,17 @@
                             Assign
                         </a>
                     @else
-                        <button class="btn btn-xs btn-flat btn-danger bg-red-gradient">
-                            Remove
-                        </button>
+                        {!! Form::open(['route'=>['account.subscriptions.free.remove-route.post', request()->segment(2), request()->segment(4),], 'onSubmit'=>"confirm('are you sure?')"]) !!}
+                        {!! Form::hidden('framed_ip', $static_ip->id) !!}
+                        <div class="btn-group btn-group-xs">
+                            <a href="{{route('account.subscriptions.free.assign-route', [request()->segment(2), request()->segment(4)])}}" class="btn btn-flat btn-info bg-aqua-gradient">
+                                Change
+                            </a>
+                            <button class="btn btn-flat btn-danger bg-red-gradient">
+                                Remove
+                            </button>
+                        </div>
+                        {!! Form::close() !!}
                     @endif
                 </div>
             </div>
